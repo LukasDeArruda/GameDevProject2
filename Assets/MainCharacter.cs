@@ -14,6 +14,8 @@ public class MainCharacter : MonoBehaviour
     private float jumpHeight;
     private Vector3 movement;
 
+    private int cubesCollected;
+
     
     void Start()
     {
@@ -23,9 +25,9 @@ public class MainCharacter : MonoBehaviour
         playerRigidBody.freezeRotation = true;
         speed = 5f;
         jumpHeight = 30f;
+        cubesCollected = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if ((movement.x != 0 || movement.z != 0) && isOnGround)
@@ -57,6 +59,11 @@ public class MainCharacter : MonoBehaviour
                 UnityEditor.EditorApplication.isPlaying = false;
             }
         }
+
+        if (cubesCollected == 3)
+        {
+            playerRigidBody.useGravity = false;
+        }
     }
 
     private void FixedUpdate()
@@ -71,6 +78,7 @@ public class MainCharacter : MonoBehaviour
                 anim.SetBool("isWalking", false);
                 anim.SetTrigger("Jump");
                 movement += new Vector3(0, jumpHeight, 0);
+                isOnGround = false;
             }
         }
         playerRigidBody.MovePosition(transform.position + movement * Time.deltaTime * speed);
@@ -78,17 +86,13 @@ public class MainCharacter : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // if (collision.gameObject.name == "Ground")
-        // {
-        isOnGround = true;
-        // }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        // if (collision.gameObject.name == "Ground")
-        // {
-        isOnGround = false;
-        // }
+        if (collision.gameObject.tag == "Floor")
+        {
+            isOnGround = true;
+        }
+        if (collision.gameObject.tag == "GravityCube")
+        {
+            cubesCollected += 1;
+        }
     }
 }
