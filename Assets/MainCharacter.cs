@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,8 +17,8 @@ public class MainCharacter : MonoBehaviour
     private Vector3 movement;
     private Vector3 rotation;
     
-    public float turnSpeed = 4;
-
+    public GameObject winText;
+    
     public GameObject camera;
     private Vector3 cameraRot;
     
@@ -110,6 +111,11 @@ public class MainCharacter : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             SceneManager.LoadScene("SampleScene");
+        }
+
+        if (collision.gameObject.tag == "Finish")
+        {
+            winText.SetActive(true);
         }
     }
 }
