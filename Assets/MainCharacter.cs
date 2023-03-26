@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCharacter : MonoBehaviour
 {
@@ -13,7 +14,13 @@ public class MainCharacter : MonoBehaviour
     private float speed;
     private float jumpHeight;
     private Vector3 movement;
+    private Vector3 rotation;
+    
+    public float turnSpeed = 4;
 
+    public GameObject camera;
+    private Vector3 cameraRot;
+    
     private int cubesCollected;
 
     
@@ -26,6 +33,7 @@ public class MainCharacter : MonoBehaviour
         speed = 5f;
         jumpHeight = 30f;
         cubesCollected = 0;
+        
     }
 
     void Update()
@@ -68,9 +76,11 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        
-        
+
+        cameraRot = camera.transform.eulerAngles;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isOnGround)
@@ -80,11 +90,13 @@ public class MainCharacter : MonoBehaviour
                 movement += new Vector3(0, jumpHeight, 0);
                 isOnGround = false;
             }
+            //transform.eulerAngles = new Vector3(0, cameraRot.y, 0);
+            
         }
         playerRigidBody.MovePosition(transform.position + movement * Time.deltaTime * speed);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Floor")
         {
@@ -93,6 +105,11 @@ public class MainCharacter : MonoBehaviour
         if (collision.gameObject.tag == "GravityCube")
         {
             cubesCollected += 1;
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }

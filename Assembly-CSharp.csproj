@@ -41,7 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets/FollowPlayer.cs" />
+     <Compile Include="Assets/Camera.cs" />
      <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/SpringCollider.cs" />
      <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/SpringManager.cs" />
      <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/ThirdPersonCamera.cs" />
@@ -57,6 +57,7 @@
      <Compile Include="Assets/Car.cs" />
      <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/UnityChanControlScriptWithRgidBody.cs" />
      <Compile Include="Assets/PowerUp.cs" />
+     <Compile Include="Assets/Enemy.cs" />
      <Folder Include="Assets" />
      <None Include="Assets/unity-chan!/Unity-chan! Model/Art/UnityChanShader/Shader/Unitychan_chara_fuku.shader" />
      <Folder Include="Assets/amusedART/Mummy_Mon/Scene" />
@@ -91,6 +92,7 @@
      <Folder Include="Assets/Simple Vehicle Pack/Textures/Mobile" />
      <Folder Include="Assets/unity-chan!/Unity-chan! Model/Art/Stage" />
      <Folder Include="Assets/CS - Signs Free" />
+     <Folder Include="Assets/Scenes/SampleScene" />
      <Folder Include="Assets/unity-chan!/Unity-chan! Model/Art/Stage/Shader" />
      <Folder Include="Assets/CS - Signs Free/Prefabs/Sm-Med" />
      <Folder Include="Assets/unity-chan!/Unity-chan! Model/Art/UnityChanShader/Shader" />
